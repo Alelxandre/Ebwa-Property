@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Maisons - Ebwa-property</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        .navbar-user-photo {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-body h5 {
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Navbar Start -->
+        <div class="container-fluid nav-bar bg-transparent">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+                <a href="" class="navbar-brand d-flex align-items-center text-center">
+                    <div class="icon p-2 me-2">
+                        <img class="img-fluid" src="{% static 'img/icon-deal.png' %}" alt="Icon" style="width: 30px; height: 30px;">
+                    </div>
+                    <h1 class="m-0 text-primary">Ebwa-Property</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="{% url 'index' %}" class="nav-item nav-link">Accueil</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                              <img src="{{ user.profile.photo.url }}" alt="Profile Photo" class="navbar-user-photo"> {{ user.get_full_name }}
+                            </a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                              <a href="{% url 'profile' %}" class="dropdown-item">Mon Profil</a>
+                              <a href="{% url 'logout' %}" class="dropdown-item">Déconnexion</a>
+                            </div>
+                          </div>
+                          
+                    </div>
+                    <a href="{% url 'maison_form' %}" class="btn btn-primary px-3 d-none d-lg-flex">Ajouter Maison</a> <!-- Mise à jour de l'URL -->
+                </div>
+            </nav>
+        </div>
+        <!-- Navbar End -->
+
+        {% block content %}
+        <div class="container py-5">
+            <h2 class="text-center mb-4">Vos Maisons</h2>
+            <div class="row">
+                {% for maison in maisons %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if maison.photo %}
+                        <img src="{{ maison.photo.url }}" class="card-img-top" alt="Photo de la maison">
+                        {% else %}
+                        <img src="{% static 'img/default-house.jpg' %}" class="card-img-top" alt="Photo de la maison">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ maison.type_maison }} - {{ maison.prix }} FCFA</h5>
+                            <p class="card-text">Localisation : {{ maison.localisation }}</p>
+                            <p class="card-text">Chambres : {{ maison.nombre_de_chambre }}</p>
+                            <p class="card-text">Douches : {{ maison.nombre_de_douche }}</p>
+                            <p class="card-text">Cuisines : {{ maison.nombre_de_cuisine }}</p>
+                            <a href="#" class="btn btn-primary">Voir</a>
+                            <a href="#" class="btn btn-secondary">Modifier</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endblock %}
+        
+        <!-- Liste des maisons End -->
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+        <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+        <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+        <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+        <!-- Template Javascript -->
+        <script src="{% static 'js/main.js' %}"></script>
+    </div>
+</body>
+</html>

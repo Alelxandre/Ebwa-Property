@@ -1,0 +1,5 @@
+# Traiter tous les fichiers texte avec des fins de ligne LF
+* text=auto
+
+# Spécifiez les fins de ligne LF pour les fichiers SCSS
+*.scss text eol=lf

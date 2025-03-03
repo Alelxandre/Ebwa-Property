@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Ajouter une Maison - Ebwa-property</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- ... autres en-têtes ... -->
+    <style>
+        .form-bg {
+            background: url("{% static 'img/property-1.jpg' %}") no-repeat center center;
+            background-size: cover;
+            position: relative;
+            padding: 50px 0;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-xxl bg-white p-0">
+        <div class="form-bg">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="form-container">
+                            <h2 class="mb-4 text-center">Ajouter une Maison</h2>
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="btn btn-primary w-100">Ajouter Maison</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

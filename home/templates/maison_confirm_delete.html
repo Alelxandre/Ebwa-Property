@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmer la Suppression - Ebwa-property</title>
+    <!-- Styles et scripts -->
+</head>
+<body>
+    <div class="container">
+        <h2>Confirmer la Suppression</h2>
+        <p>Êtes-vous sûr de vouloir supprimer la maison "{{ maison.type_maison.nom }} - {{ maison.prix }} FCFA" ?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+            <a href="{% url 'maison_list' %}" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</body>
+</html>
