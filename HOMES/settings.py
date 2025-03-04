@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ul)6@)dm3vptwo5k^^lvlsd!l@(2!5+a0f#$u*w_33ii=31_)#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['example.com', 'ebwa-property.onrender.com' , 'ebwa-property-3.onrender.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
